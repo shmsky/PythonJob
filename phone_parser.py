@@ -26,15 +26,14 @@ async def extract_phone_numbers(url):
                     phone_numbers.append(unic_number)
         return phone_numbers
 
-# Список URL-ов
-urls = ["https://hands.ru/company/about", "https://repetitors.info"]
 
-# Запускаем асинхронный код
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-phone_numbers = loop.run_until_complete(extract_phone_numbers(urls))
+if __name__ == "__main__":
+    try:
+        urls = ["https://hands.ru/company/about", "https://repetitors.info"]
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        phone_numbers = loop.run_until_complete(extract_phone_numbers(urls))
+        print("Extracted Phone Numbers:", phone_numbers)
 
-# Выводим найденные номера телефонов
-print("Phone numbers found:")
-for number in phone_numbers:
-    print(number)
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
