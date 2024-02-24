@@ -30,9 +30,7 @@ async def extract_phone_numbers(url):
 if __name__ == "__main__":
     try:
         urls = ["https://hands.ru/company/about", "https://repetitors.info"]
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        phone_numbers = loop.run_until_complete(extract_phone_numbers(urls))
+        phone_numbers = asyncio.run(extract_phone_numbers(urls))
         print("Extracted Phone Numbers:", phone_numbers)
 
     except Exception as e:
